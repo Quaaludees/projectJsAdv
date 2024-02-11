@@ -7,11 +7,11 @@ function allRandom (min, max) {
 console.log(allRandom(1, 20));
 
 function gameFn (str) {
-    const test = Number(str.replace('d', ' '));
-    if (Number.isNaN(test) || !Number.isInteger(test) || test % 2 !== 0 || test < 4 || test > 20) {
+    const countGame = Number(str.replace('d', ''));
+    if (Number.isNaN(countGame) || !Number.isInteger(countGame) || countGame % 2 !== 0 || countGame < 4 || countGame > 20) {
         return 'Ne to, uhodi';
     }
-    return allRandom(1, test);
+    return allRandom(1, countGame);
 }
 
 gameFn('d4')
