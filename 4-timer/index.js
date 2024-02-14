@@ -5,15 +5,13 @@ const hour = document.getElementById("hour");
 const minute = document.getElementById("minute");
 const second = document.getElementById("second");
 const current = new Date();
-const newYear = new Date(`1 Jan ${current.getFullYear() +1} 00:00:00`)
-
+const newYear = new Date(`1 Jan ${current.getFullYear() +1} 00:00:00`);
 
 function specialDay () {
     const dayNow = new Date();
     return 31 - new Date(dayNow.getFullYear(), dayNow.getMonth(), 31).getDate();
 }
 
-console.log(specialDay())
 function timer() {
     const dayNow = Date.now();
     const difference = newYear - dayNow;
@@ -33,4 +31,5 @@ function timer() {
     second.innerHTML = sec < 10 ?  "0" + sec : sec;
 
 } setInterval(timer, 1000);
+
 
