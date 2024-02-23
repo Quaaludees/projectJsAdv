@@ -1,7 +1,7 @@
 class Car {
     #label;
     #model;
-    #_mileage;
+    #mileage;
     #twist = false;
     #initialMileage;
 
@@ -12,20 +12,19 @@ class Car {
         this.#initialMileage = mileage;
     }
 
-    get #mileage() {
-        return this.#_mileage;
+    get mileage() {
+        return this.#mileage;
     }
 
-    set #mileage(mileage) {
+
+    set mileage(mileage) {
         if (this.#initialMileage > mileage) {
             this.#twist = true;
         }
-        this.#_mileage = mileage;
+        this.#mileage = mileage;
     }
 
-    changeMileage(mileageNew) {
-        this.#mileage = mileageNew;
-    }
+
 
     info() {
         console.log(`Марка автомобиля: ${this.#label} модель:${this.#model} пробег: ${this.#mileage}`)
@@ -40,9 +39,9 @@ class Car {
 
 const carMil = new Car('bmw', 'x3', '2000');
 console.log(carMil);
-carMil.changeMileage(5000);
+carMil.mileage = 5000;
 console.log(carMil);
-carMil.changeMileage(1000);
+carMil.mileage = 1000;
 carMil.info();
 carMil.twistMileage();
 console.log(carMil);

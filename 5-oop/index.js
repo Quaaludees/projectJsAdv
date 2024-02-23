@@ -1,49 +1,81 @@
+// const Hero = function (race, name, lang) {
+//     this.race = race;
+//     this.name = name;
+//     this.lang = lang;
+//     this.sayMyName = function () {
+//         console.log(`Мое имя ${this.name} и я говорю на ${this.lang}`)
+//     }
+// };
+//
+// const Ork = function (name, weapon) {
+//     this.weapon = weapon;
+//     this.__proto__ = new Hero('орк', name, 'оркский');
+//     this.hit = function () {
+//         console.log(`${this.name} наносит удар с помощью ${this.weapon}`)
+//     }
+// }
+//
+// const ork = new Ork('Рокфор', 'кулак');
+//
+//
+// const Elf = function (name, spell) {
+//     this.spell = spell;
+//     this.__proto__ = new Hero('эльф', name, 'эльфячий');
+//     this.createSpell = function () {
+//         console.log(`${this.name} наносит удар с помощью заклинания ${this.spell}`)
+//     }
+// }
+//
+// const elf = new Elf('Люмистрель', 'огненный-шар');
+// ork.sayMyName()
+// elf.sayMyName()
+// ork.hit()
+// elf.createSpell()
+
+
 const Hero = function (race, name, lang) {
     this.race = race;
     this.name = name;
     this.lang = lang;
-    this.sayMyName = function () {
-        console.log(`Мое имя ${this.name} и я говорю на ${this.lang}`)
-    }
 };
+
+Hero.prototype.sayMyName = function () {
+    console.log(`Мое имя ${this.name} и я говорю на ${this.lang}`)
+}
 
 const Ork = function (name, weapon) {
     this.weapon = weapon;
-    this.__proto__ = new Hero('орк', name, 'оркский');
-    this.hit = function () {
-        console.log(`${this.name} наносит удар с помощью ${this.weapon}`)
-    }
+    Hero.call(this, 'орк', name, 'оркский');
+}
+
+
+Ork.prototype = Object.create(Hero.prototype);
+Ork.prototype.constructor = Ork;
+
+Ork.prototype.hit = function () {
+    console.log(`${this.name} наносит удар с помощью ${this.weapon}`)
 }
 
 const ork = new Ork('Рокфор', 'кулак');
-
+console.log('ork', ork)
 
 const Elf = function (name, spell) {
     this.spell = spell;
-    this.__proto__ = new Hero('эльф', name, 'эльфячий');
-    this.createSpell = function () {
-        console.log(`${this.name} наносит удар с помощью заклинания ${this.spell}`)
-    }
+    Hero.call(this, 'эльф', name, 'эльфячий');
+}
+
+Elf.prototype = Object.create(Hero.prototype);
+
+Elf.prototype.createSpell = function () {
+    console.log(`${this.name} наносит удар с помощью заклинания ${this.spell}`)
 }
 
 const elf = new Elf('Люмистрель', 'огненный-шар');
+console.log('elf', elf)
 ork.sayMyName()
 elf.sayMyName()
 ork.hit()
 elf.createSpell()
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //
