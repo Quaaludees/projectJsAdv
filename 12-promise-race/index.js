@@ -1,21 +1,31 @@
-const generateFetch =  (limit) => {
-    return fetch(`https://dummyjson.com/products/?limit=${limit}`);
 
-}
+const race = (promiseArray) => {
+    return new Promise((resolve, reject) => {
+        for (let i = 0; i < promiseArray.length ;i++) {
+            Promise.resolve(promiseArray[i])
+                .then(resolve, reject)
+                .catch(reject);
+        }
+    });
+};
 
-function race(array) {
-    Promise.race(array)
-        .then((value) => {
-            return value.json()
-        })
-        .then((response) => {
-            console.log(response)
-        });
+const test1 = new Promise( (resolve) => {
+    setTimeout(resolve, 101, 'Alonso');
+});
 
-}
+const test2 = new Promise( (resolve) => {
+    setTimeout(resolve, 102, 'Hamilton');
+});
 
-race([
-    generateFetch(30),
-    generateFetch(40),
-    generateFetch(12),
-])
+const test3 = new Promise( (resolve, reject) => {
+    setTimeout(reject, 100, 'Verstappen');
+});
+
+race([test1, test2, test3]).then( (value) => {
+    console.log(value);
+}).catch(function (e){
+    console.log(e);
+});
+
+
+
