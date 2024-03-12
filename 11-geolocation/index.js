@@ -6,7 +6,7 @@ function render (coords) {
         longitude.innerText = `Ваша долгота: ${coords.longitude}`;
         console.log(coords)
     } catch (e) {
-        console.error(e)
+        throw e;
     }
 
 }
@@ -18,5 +18,7 @@ const geo = new Promise((resolve, reject) => {
 geo.then(res => {
     render(res.coords)
 }).catch ((e) => {
-    console.error(e)
+    console.log('123', e);
 })
+
+

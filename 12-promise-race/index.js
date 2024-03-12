@@ -2,7 +2,7 @@
 const race = (promiseArray) => {
     return new Promise((resolve, reject) => {
         for (let i = 0; i < promiseArray.length ;i++) {
-            Promise.resolve(promiseArray[i])
+            promiseArray[i]
                 .then(resolve, reject)
                 .catch(reject);
         }
@@ -10,11 +10,11 @@ const race = (promiseArray) => {
 };
 
 const test1 = new Promise( (resolve) => {
-    setTimeout(resolve, 101, 'Alonso');
+    setTimeout(resolve, 90, 'Alonso');
 });
 
 const test2 = new Promise( (resolve) => {
-    setTimeout(resolve, 102, 'Hamilton');
+    setTimeout(resolve, 90, 'Hamilton');
 });
 
 const test3 = new Promise( (resolve, reject) => {
